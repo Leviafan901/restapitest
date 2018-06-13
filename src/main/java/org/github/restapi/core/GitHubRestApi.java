@@ -11,20 +11,36 @@ import java.util.Collections;
 
 public class GitHubRestApi {
 
-    public Gist createGist(Gist gist, GistService service, String filePathtoCredentials) {
+    private GistService service;
+    private String credentialsFile;
+
+    public GitHubRestApi(GistService service, String credentialsFile) {
+        this.service = service;
+        this.credentialsFile = credentialsFile;
+    }
+
+    public Gist createGist(Gist gist) throws IOException {
         GistFile file = new GistFile();
         file.setContent("System.out.println(\"Hello World\");");
-        String jsonString = JsonReader.read(filePathtoCredentials);
+        String jsonString = JsonReader.read(credentialsFile);
         JSONObject credentials = new JSONObject(jsonString);
-        service.getClient().setCredentials(credentials.getString("login"), credentials.getString("password"));
-        Gist newGist = null;
-        try {
-            gist.setDescription("Prints a string to standard out");
-            gist.setFiles(Collections.singletonMap("Hello.java", file));
-            newGist = service.createGist(gist); //returns the created gist
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return newGist;
+        service.getClient().setCredentials(credentials.getString("login"),
+                credentials.getString("password"));
+        gist.setDescription("Prints a string to standard out");
+        gist.setFiles(Collections.singletonMap("Hello.java", file));
+        return service.createGist(gist); //returns the created gist
+    }
+
+    public Gist readGist(String gistId) throws IOException {
+        return service.getGist(gistId);
+    }
+
+    public Gist updateGist(Gist gist) throws IOException {
+        gist.setDescription("Updated gist!");
+        return service.updateGist(gist);
+    }
+
+    public void deleteGist(String gistId) throws IOException {
+        service.deleteGist(gistId);
     }
 }

@@ -24,6 +24,7 @@ $RECYCLE.BIN/
 test-output/*
 .idea/*
 target/*
+build/*
 
 # =========================
 # Operating System Files

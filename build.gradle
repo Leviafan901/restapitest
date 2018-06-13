@@ -13,7 +13,6 @@ repositories {
 
 dependencies {
     compile group: 'org.eclipse.mylyn.github', name: 'org.eclipse.egit.github.core', version: '2.1.5'
-    compile group: 'org.eclipse.mylyn.github', name: 'org.eclipse.egit.github.client', version: '2.1.5'
     compile group: 'org.json', name: 'json', version: '20180130'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.0.RELEASE'
     compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
