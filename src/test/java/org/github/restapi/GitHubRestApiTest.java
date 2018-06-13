@@ -57,7 +57,7 @@ public class GitHubRestApiTest {
     @Test(dependsOnMethods = "checkGistUpdate", expectedExceptions = org.springframework.web.client.HttpClientErrorException.class)
     public void checkGistDeleted() throws IOException {
         githubApiClient.deleteGist(actualGist.getId());
-        HttpStatus expectedStatus = getHttpStatus(actualGist);
+        HttpStatus expectedStatus = getHttpStatus(actualGist);// should get Error 404, but it is right because resource is deleted
     }
 
     private HttpStatus getHttpStatus(Gist updatedGist) {
