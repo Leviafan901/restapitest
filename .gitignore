@@ -26,6 +26,11 @@ test-output/*
 target/*
 build/*
 
+#Gradle
+.gradle/*
+out/*
+gradlew.*
+
 # =========================
 # Operating System Files
 # =========================
