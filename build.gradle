@@ -29,6 +29,7 @@ tasks.withType(JavaCompile) {
 
 task tests(type: Test, dependsOn: testClasses){
     useTestNG() {
+        useDefaultListeners = true
         suites 'src/test/resources/testng.xml'
     }
 }
